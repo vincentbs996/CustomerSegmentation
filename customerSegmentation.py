@@ -1,18 +1,10 @@
 import streamlit as st
 import joblib
 import numpy as np
-import pandas as pd
 import os
 from sklearn.cluster import MeanShift
 
-# Load your dataset
-data_path = os.path.join(os.path.dirname(__file__), 'data', 'Mall_Customer.csv')
-dataset = pd.read_csv(data_path)
-
-# Extract the features for clustering
-X = dataset[['Annual Income (k$)', 'Spending Score (1-100)']].values
-
-# Load the KMeans model
+# Load the KMeans model using the correct path
 model_path = os.path.join(os.path.dirname(__file__), 'km_model.joblib')
 kmeans_model = joblib.load(model_path)
 
@@ -47,9 +39,16 @@ if st.button('Check'):
         st.write(f"The new customer belongs to: {cluster_label}")
 
     elif cluster_method == 'Mean Shift':
-        # Fit MeanShift model to the actual dataset
+        # Sample data for MeanShift clustering
+        # Ideally, replace this with your actual dataset for better clustering
+        sample_data = np.array([
+            [15, 39], [15, 81], [16, 6], [16, 77], [17, 40], [17, 76],
+            [18, 6], [18, 94], [19, 3], [19, 72], [19, 14], [19, 99]
+        ])
+
+        # Fit the MeanShift model on sample data
         mean_shift_model = MeanShift()
-        mean_shift_model.fit(X)
+        mean_shift_model.fit(sample_data)
 
         # Predict the cluster using Mean Shift
         predicted_cluster = mean_shift_model.predict(input_array)
