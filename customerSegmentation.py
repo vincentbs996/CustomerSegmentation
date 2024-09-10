@@ -6,7 +6,7 @@ import os
 from sklearn.cluster import MeanShift
 
 # Load your dataset
-data_path = os.path.join(os.path.dirname(__file__), 'customer_data.csv')  # Adjust file name if needed
+data_path = os.path.join(os.path.dirname(__file__), 'Mall_Customer.csv')  # Correct file name
 dataset = pd.read_csv(data_path)
 
 # Extract the features for clustering
