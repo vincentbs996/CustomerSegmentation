@@ -7,4 +7,3 @@ seaborn
 KMeans
 dump
 scikit-learn
-sklearn.cluster
